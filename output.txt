@@ -1,0 +1,55 @@
+Compressing docs/cantrbry/alice29.txt
+Initial file size: 152089 bytes
+Compressed file size: 62244 bytes
+Compression ratio: 0.40926
+Time taken to compress: 212 milliseconds
+Compressing docs/cantrbry/asyoulik.txt
+Initial file size: 125179 bytes
+Compressed file size: 54987 bytes
+Compression ratio: 0.439267
+Time taken to compress: 153 milliseconds
+Compressing docs/cantrbry/cp.html
+Initial file size: 24603 bytes
+Compressed file size: 11314 bytes
+Compression ratio: 0.459863
+Time taken to compress: 24 milliseconds
+Compressing docs/cantrbry/fields.c
+Initial file size: 11150 bytes
+Compressed file size: 4961 bytes
+Compression ratio: 0.444933
+Time taken to compress: 9 milliseconds
+Compressing docs/cantrbry/grammar.lsp
+Initial file size: 3721 bytes
+Compressed file size: 1810 bytes
+Compression ratio: 0.486428
+Time taken to compress: 3 milliseconds
+Compressing docs/cantrbry/kennedy.xls
+Initial file size: 1029744 bytes
+Compressed file size: 320787 bytes
+Compression ratio: 0.311521
+Time taken to compress: 1296 milliseconds
+Compressing docs/cantrbry/lcet10.txt
+Initial file size: 426754 bytes
+Compressed file size: 163170 bytes
+Compression ratio: 0.382351
+Time taken to compress: 482 milliseconds
+Compressing docs/cantrbry/plrabn12.txt
+Initial file size: 481861 bytes
+Compressed file size: 198464 bytes
+Compression ratio: 0.41187
+Time taken to compress: 581 milliseconds
+Compressing docs/cantrbry/ptt5
+Initial file size: 513216 bytes
+Compressed file size: 62212 bytes
+Compression ratio: 0.12122
+Time taken to compress: 436 milliseconds
+Compressing docs/cantrbry/sum
+Initial file size: 38240 bytes
+Compressed file size: 20099 bytes
+Compression ratio: 0.525601
+Time taken to compress: 36 milliseconds
+Compressing docs/cantrbry/xargs.1
+Initial file size: 4227 bytes
+Compressed file size: 2336 bytes
+Compression ratio: 0.552638
+Time taken to compress: 3 milliseconds

@@ -25,7 +25,7 @@ class BitIO {
   // Read a single bit (or trailing zero)
   bool input_bit();
 
-  // Added by Tunc for LZW
+  // Added for LZW
   // Returns if the input file reached EOF
   bool reached_eof();
  

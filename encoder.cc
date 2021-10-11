@@ -42,6 +42,7 @@ int main(int argc, char* argv[]){
             output.close();
             auto duration = duration_cast<std::chrono::milliseconds>(end_time - start_time);
 
+            // output statistics
             fs::path out = fs::current_path() / (std::string(argv[i])+".comp");
             auto output_size = fs::file_size(out);
             std::cout << "Compressed file size: " << output_size << " bytes\n";

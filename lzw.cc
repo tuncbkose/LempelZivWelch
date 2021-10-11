@@ -16,20 +16,22 @@ LZW::~LZW() = default;
 
 void LZW::encode(std::ifstream* is, std::ofstream* os) {
     // Create symbol to code table
+    // To make this code work faster, I would probably want to optimize this table, and not use these strings as keys
     std::unordered_map<std::string, int> table;
     for (int i = 0; i < LZW::ALPHABET_SIZE; ++i){
         table[std::to_string(i)] = i;
     }
 
     int code_size = LZW::STARTING_CODE_SIZE;
-    // Since the first code is 0, next is ALPHABET_SIZE
+    // Since the first code is 0, the next code is ALPHABET_SIZE
     int next_code = LZW::ALPHABET_SIZE;
     // When this is reached, we must increase the code size
     int next_increase_point = LZW::ALPHABET_SIZE<<1;
     BitIO bitio(os, nullptr);
-    // Used to read from is
+
+    // K is used to read from is
     int K;
-    // Used to not call to_string unnecessarily.
+    // Used to not call to_string on K multiple times.
     std::string str_K;
 
     // Start encoding
@@ -37,6 +39,7 @@ void LZW::encode(std::ifstream* is, std::ofstream* os) {
     std::string w = std::to_string(K);
 
     // This is here instead of while(true) in case input has only 1 byte
+    // K will be -1 at EOF
     while (K != -1){
         K = is->get();
 
@@ -61,6 +64,7 @@ void LZW::encode(std::ifstream* is, std::ofstream* os) {
         else{
             int code = table[w];
             // write code_size many bits, from left to right
+            // the first couple of bits might need to be 0 if code_size is longer than actual length of code
             for (int i = code_size-1; i>=0; --i){
                 bitio.output_bit((code>>i)&1);
             }
@@ -84,6 +88,7 @@ struct symbol_type{
 };
 
 // Reads `code_size` many bits from bitio to get the correct code
+// bitio reads bit by bit, so this function abstracts the repetition during decoding
 static int read_code(int code_size, BitIO* bitio){
     int b = 0;
     for (int i = 0; i < code_size; ++i){
@@ -110,8 +115,6 @@ void LZW::decode(std::ifstream *is, std::ofstream *os) {
     // Create symbol to code table
     std::unordered_map<int, symbol_type> table;
     for (int i = 0; i < LZW::ALPHABET_SIZE; ++i){
-        // Since as code_size gets longer, I'll have to add 0's at the start,
-        // I might as well leave conversion to bits to later.
         symbol_type s{nullptr, (char)i};
         table[i] = s;
     }
@@ -167,8 +170,11 @@ void LZW::decode(std::ifstream *is, std::ofstream *os) {
             next_code += 1;
         }
         else{
+            // write the pattern matching previously seen code
             symbol = table[code];
             FINchar = write_symbol_and_return_first(symbol, os);
+
+            // add new code
             symbol_type next_symbol{&table[OLDcode], FINchar};
             table[next_code] = next_symbol;
             next_code += 1;
